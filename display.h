@@ -24,7 +24,3 @@ void promptLine(void) ;
 void writeError(char*) ;
 void exitLine(void) ;
 void prompWithStatus(int, int, long) ;
-char** getFunction(char*, char**) ;
-
-
-

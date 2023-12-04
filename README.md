@@ -37,3 +37,10 @@ Shell created during the System Programming labs
 	-fié en vectoriel.
 
 	Les erreurs prises en compte n'ont pas changé.
+
+### Question 7:
+	Les redirections < et > sont bien pris en compte. Une fonction a été implémentée afin de récu-
+	-pérer la fonction et de vérifier si l'un des caractères est un < ou un > et d'agir en fonction
+	du résultat.
+
+	Les erreurs prises en compte n'ont pas changé.

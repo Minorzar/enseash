@@ -1,14 +1,15 @@
 #include "display.h"
+#include "exec.h"
 
 int main() {
 
 	char userInput[MAX_INPUT_SIZE];
 	ssize_t byteRead;
-    	int status;
-    	struct timespec start_time, end_time;
-    	long time_elapsed;
+    int status;
+    struct timespec start_time, end_time;
+    long time_elapsed;
 	char *delim = " ";
-    	char *functionBuffer[MAX_INPUT_SIZE];
+    char *functionBuffer[MAX_INPUT_SIZE];
 
     welcomeShell();
 	while (1) {
@@ -63,6 +64,7 @@ int main() {
           		writeError(SON_ERROR);
             
             }
+            
             else if (pid != 0) { // The father code
             
             	wait(&status);
@@ -74,24 +76,27 @@ int main() {
             
                     prompWithStatus(0, WEXITSTATUS(status), time_elapsed);
             
-                } else if (WIFSIGNALED(status)) {   // Exit signal
+                }
+
+                else if (WIFSIGNALED(status)) {   // Exit signal
             
                     prompWithStatus(1, WTERMSIG(status), time_elapsed);
             
                 }
 			
             }
-
-		else { // The son code
-
-			getFunction(userInput, functionBuffer) ;
-
-                    	execvp(functionBuffer[0], functionBuffer);
-                	perror("Failed to use the command");
-        		exit(EXIT_FAILURE);
+            
+            else { // The son code
                 
-        		}
-		}
+                redirectionHandler(userInput, functionBuffer) ;
+
+                execvp(functionBuffer[0], functionBuffer);
+            	perror("Failed to use the command");
+                exit(EXIT_FAILURE);
+                
+        	}
+		
+        }
 
 	}
 	
