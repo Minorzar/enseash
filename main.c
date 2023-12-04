@@ -6,6 +6,8 @@ int main() {
 	char userInput[MAX_INPUT_SIZE];
 	ssize_t byteRead;
     int status;
+    struct timespec start_time, end_time;
+    long time_elapsed;
 
     welcomeShell();
 	while (1) {
@@ -30,7 +32,7 @@ int main() {
 		// No input (just enter)
         if (byteRead == 1) {
 
-       		 promptLine();
+       		promptLine();
         
    		}
 
@@ -51,6 +53,8 @@ int main() {
             
             }
 
+            clock_gettime(CLOCK_MONOTONIC, &start_time);
+
 			pid_t pid = fork();
 
             if (pid == -1) {
@@ -62,13 +66,16 @@ int main() {
             
             	wait(&status);
 
+                clock_gettime(CLOCK_MONOTONIC, &end_time);
+                time_elapsed = ((end_time.tv_nsec - start_time.tv_nsec) / 1e6); // convert ns to ms
+
                 if (WIFEXITED(status)) {    // Exit code
             
-                    prompWithStatus(0, WEXITSTATUS(status));
+                    prompWithStatus(0, WEXITSTATUS(status), time_elapsed);
             
                 } else if (WIFSIGNALED(status)) {   // Exit signal
             
-                    prompWithStatus(1, WTERMSIG(status));
+                    prompWithStatus(1, WTERMSIG(status), time_elapsed);
             
                 }
 			

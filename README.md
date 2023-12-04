@@ -25,3 +25,8 @@ Shell created during the System Programming labs
 	gérer la nouvelle écriture du message prompt.
 
 	Les erreurs prises en compte n'ont pas changé.
+
+### Question 5:
+	Le temps est pris en compte. La fonction de la question 4 a été modifié pour en tenir compte.
+
+	Les erreurs prises en compte n'ont pas changé.

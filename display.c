@@ -16,10 +16,12 @@ void exitLine(){
 	write(1, EXIT_MESSAGE, strlen(EXIT_MESSAGE) - 1) ;
 }
 
-void prompWithStatus(int type, int status){
+void prompWithStatus(int type, int status, long time){
 
 	char message[MAX_INPUT_SIZE] ;
 
-	snprintf(message, sizeof(message), "enseash [%s:%d] %% ",SIGNAL_OR_CODE(type), status);
+	snprintf(message, sizeof(message), "enseash [%s:%d|%ldms] %% ",SIGNAL_OR_CODE(type), status,time);
 	write(1, message, strlen(message)) ;
+
 }
+
