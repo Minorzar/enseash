@@ -61,7 +61,16 @@ int main() {
             else if (pid != 0) { // The father code
             
             			wait(&status);
-                        promptLine() ;
+
+                        if (WIFEXITED(status)) {
+            
+                        prompWithStatus(0, WEXITSTATUS(status));
+            
+                    } else if (WIFSIGNALED(status)) {
+            
+                        prompWithStatus(1, WTERMSIG(status));
+            
+                    }
 			
             }
 

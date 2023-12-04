@@ -21,6 +21,7 @@ void welcomeShell(void) ;
 void promptLine(void) ;
 void writeError(char*) ;
 void exitLine(void) ;
+void prompWithStatus(int, int, long) ;
 
 
 

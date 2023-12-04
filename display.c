@@ -15,3 +15,11 @@ void writeError(char* error){
 void exitLine(){
 	write(1, EXIT_MESSAGE, strlen(EXIT_MESSAGE) - 1) ;
 }
+
+void prompWithStatus(int type, int status){
+
+	char message[MAX_INPUT_SIZE] ;
+
+	snprintf(message, sizeof(message), "enseash [%s:%d] %% ",SIGNAL_OR_CODE(type), status);
+	write(1, message, strlen(message)) ;
+}

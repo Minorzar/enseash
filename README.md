@@ -19,3 +19,9 @@ Shell created during the System Programming labs
 	Les codes de sorties exit et ctrl + d sont bien fonctionnel de même que le message de sortie.
 
 	Les erreurs prises en compte n'ont pas changé par rapport à la question précédente.
+
+### Question 4:
+	Les signaux et code sont bien pris en compte dans l'affichage. Une fonction a été créée pour
+	gérer la nouvelle écriture du message prompt.
+
+	Les erreurs prises en compte n'ont pas changé.
