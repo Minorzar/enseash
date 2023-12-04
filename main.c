@@ -19,6 +19,14 @@ int main() {
         
         }
 
+        // Ctrl + d case
+        if (byteRead == 0) {
+
+            exitLine();
+            return EXIT_SUCCESS;
+        
+        }
+
 		// No input (just enter)
         if (byteRead == 1) {
 
@@ -33,6 +41,14 @@ int main() {
             // Get rid of \n
     		userInput[byteRead - 1] = '\0';
 
+            }
+
+            // Exit case
+            if (strcmp(userInput, EXIT) == 0) {
+            
+                exitLine();
+                return EXIT_SUCCESS;
+            
             }
 
 			pid_t pid = fork();

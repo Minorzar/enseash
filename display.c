@@ -11,3 +11,7 @@ void promptLine(){
 void writeError(char* error){
 	write(2, error, strlen(error) - 1) ;
 }
+
+void exitLine(){
+	write(1, EXIT_MESSAGE, strlen(EXIT_MESSAGE) - 1) ;
+}

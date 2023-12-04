@@ -10,6 +10,8 @@
 #define PROMPT "enseash %  "
 #define NEW_LINE "\r\n"
 #define MAX_INPUT_SIZE 256
+#define EXIT_MESSAGE "\r\nBye bye...\r\n"
+#define EXIT "exit"
 
 #define READ_ERROR "Error while reading"
 #define SON_ERROR "Error while creating the son process"
@@ -18,7 +20,7 @@
 void welcomeShell(void) ;
 void promptLine(void) ;
 void writeError(char*) ;
-
+void exitLine(void) ;
 
 
 
