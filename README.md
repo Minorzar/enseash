@@ -30,3 +30,10 @@ Shell created during the System Programming labs
 	Le temps est pris en compte. La fonction de la question 4 a été modifié pour en tenir compte.
 
 	Les erreurs prises en compte n'ont pas changé.
+
+### Question 6:
+	Les commandes avec arguments sont désormais fonctionnelles. Une fonction permettant de séparer
+	la chaîne d'entrée en fonction des espaces a été implémenté et le mode d'exécution a été modi-
+	-fié en vectoriel.
+
+	Les erreurs prises en compte n'ont pas changé.

@@ -1,13 +1,14 @@
 #include "display.h"
 
-
 int main() {
 
 	char userInput[MAX_INPUT_SIZE];
 	ssize_t byteRead;
-    int status;
-    struct timespec start_time, end_time;
-    long time_elapsed;
+    	int status;
+    	struct timespec start_time, end_time;
+    	long time_elapsed;
+	char *delim = " ";
+    	char *functionBuffer[MAX_INPUT_SIZE];
 
     welcomeShell();
 	while (1) {
@@ -81,13 +82,15 @@ int main() {
 			
             }
 
-			else { // The son code
+		else { // The son code
 
-                execlp(userInput, userInput, NULL);
-                perror("Failed to use the command");
+			getFunction(userInput, functionBuffer) ;
+
+                    	execvp(functionBuffer[0], functionBuffer);
+                	perror("Failed to use the command");
         		exit(EXIT_FAILURE);
                 
-        	}
+        		}
 		}
 
 	}
