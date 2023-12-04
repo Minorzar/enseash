@@ -5,54 +5,61 @@ int main() {
 
 	char userInput[MAX_INPUT_SIZE];
 	ssize_t byteRead;
+    int status;
 
-    	welcomeShell();
+    welcomeShell();
 	while (1) {
 
-        	byteRead = read(0, userInput, sizeof(userInput));
+    	byteRead = read(0, userInput, sizeof(userInput));
 
-       		// Reading error
-        	if (byteRead < 0) {
+        // Reading error
+    	if (byteRead < 0) {
 
-           	 writeError(READ_ERROR);
+       	 writeError(READ_ERROR);
         
-        	}
+        }
 
 		// No input (just enter)
-        	if (byteRead == 1) {
+        if (byteRead == 1) {
 
-           		 promptLine();
+       		 promptLine();
         
-       		}
+   		}
 
 		else {
             
-            		if (byteRead) {
-            
-                		// Get rid of \n
-                		userInput[byteRead - 1] = '\0';
-			}
+            if (byteRead) {
+    
+            // Get rid of \n
+    		userInput[byteRead - 1] = '\0';
+
+            }
 
 			pid_t pid = fork();
 
-                	if (pid == -1) {
+            if (pid == -1) {
             
-                   		writeError(SON_ERROR);
+          		writeError(SON_ERROR);
             
-                	} else if (pid != 0) { // The father code
+            }
+            else if (pid != 0) { // The father code
+            
             			wait(&status);
-			}
+                        promptLine() ;
+			
+            }
 
 			else { // The son code
 
-                    		execlp(byteRead, byteRead, NULL);
-                    		perror("Failed to use the command");
-                    		exit(EXIT_FAILURE);
+                execlp(userInput, userInput, NULL);
+                perror("Failed to use the command");
+        		exit(EXIT_FAILURE);
                 
-                	}
+        	}
 		}
 
 	}
-	return EXIT_FAILURE;
+	
+    return EXIT_FAILURE;
 
 }
