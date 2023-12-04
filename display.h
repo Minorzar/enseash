@@ -16,12 +16,14 @@
 #define READ_ERROR "Error while reading"
 #define SON_ERROR "Error while creating the son process"
 
+#define SIGNAL_OR_CODE(x) ((x == 0) ? "exit" : "sign")
+
 // Functions declaration
 void welcomeShell(void) ;
 void promptLine(void) ;
 void writeError(char*) ;
 void exitLine(void) ;
-void prompWithStatus(int, int, long) ;
+void prompWithStatus(int, int) ;
 
 
 

@@ -60,17 +60,17 @@ int main() {
             }
             else if (pid != 0) { // The father code
             
-            			wait(&status);
+            	wait(&status);
 
-                        if (WIFEXITED(status)) {
+                if (WIFEXITED(status)) {    // Exit code
             
-                        prompWithStatus(0, WEXITSTATUS(status));
+                    prompWithStatus(0, WEXITSTATUS(status));
             
-                    } else if (WIFSIGNALED(status)) {
+                } else if (WIFSIGNALED(status)) {   // Exit signal
             
-                        prompWithStatus(1, WTERMSIG(status));
+                    prompWithStatus(1, WTERMSIG(status));
             
-                    }
+                }
 			
             }
 
