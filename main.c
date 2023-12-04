@@ -1,6 +1,8 @@
 #include "display.h"
 #include "exec.h"
 
+
+
 int main() {
 
 	char userInput[MAX_INPUT_SIZE];
@@ -14,7 +16,7 @@ int main() {
     welcomeShell();
 	while (1) {
 
-    	byteRead = read(0, userInput, sizeof(userInput));
+    	byteRead = read(STDIN_FILENO, userInput, sizeof(userInput));
 
         // Reading error
     	if (byteRead < 0) {
@@ -74,25 +76,32 @@ int main() {
 
                 if (WIFEXITED(status)) {    // Exit code
             
-                    prompWithStatus(0, WEXITSTATUS(status), time_elapsed);
+                    prompWithStatus(EXT, WEXITSTATUS(status), time_elapsed);
             
                 }
 
                 else if (WIFSIGNALED(status)) {   // Exit signal
             
-                    prompWithStatus(1, WTERMSIG(status), time_elapsed);
+                    prompWithStatus(SIGNAL, WTERMSIG(status), time_elapsed);
             
                 }
 			
             }
             
-            else { // The son code
-                
-                redirectionHandler(userInput, functionBuffer) ;
+            else { // The son code 
 
-                execvp(functionBuffer[0], functionBuffer);
-            	perror("Failed to use the command");
-                exit(EXIT_FAILURE);
+                if (redirectionHandler(userInput, functionBuffer) != NULL){     // To prevent an unwanted re run (case of | encountered)
+
+                    execvp(functionBuffer[0], functionBuffer);
+                    perror(FUNCTION_ERROR);
+                    exit(EXIT_FAILURE);
+
+                }
+                else{
+
+                    return EXIT_SUCCESS;
+                
+                }
                 
         	}
 		
